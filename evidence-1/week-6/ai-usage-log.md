@@ -1,25 +1,14 @@
-Pertemuan 6 - Test Matrix KursusKu
+AI Usage Log - Pertemuan 6
 
-01 Mahasiswa + Web Dasar + 1 paket => Rp 240.000 : PASS
+Masalah/tujuan	Saran AI	Keputusan	Hasil uji
 
-02 Guru + PHP Dasar + 1 paket => Rp 340.000 : PASS
-
-03 Umum + Laravel Dasar + 1 paket => Rp 285.000 : PASS
-
-04 Mahasiswa + Web Dasar + 2 paket => Rp 480.000 : PASS
-
-05 Nama kosong => browser menahan pengiriman karena field wajib : PASS
-
-06 Email tidak valid => browser meminta format email yang valid : PASS
-
-07 Tidak memilih minat => “Belum memilih minat.” tampil di ringkasan tanpa warning : PASS
-
-08 Pilih 3 minat => Frontend, Backend, dan Database tampil di ringkasan : PASS
-
-09 Metode Offline => “Offline” tampil di ringkasan : PASS
-
-10 Metode Hybrid => “Hybrid” tampil di ringkasan : PASS
-
-11 PHP Dasar dipilih => pilihan jumlah paket tersedia dari 1 sampai 3 : PASS
-
-12 Fasilitas kursus => Modul digital, Sertifikat penyelesaian, dan Forum diskusi kelas tampil di ringkasan : PASS
+Perhitungan biaya kursus	Gunakan harga kursus, jumlah paket, dan diskon berdasarkan tipe peserta	Diterima	Total biaya berhasil dihitung
+Branching diskon	Gunakan percabangan berdasarkan tipe peserta Mahasiswa, Guru, dan Umum	Diterima	Mahasiswa 20%, Guru 15%, Umum 5%
+Checkbox minat kosong	Gunakan $_POST['interests'] ?? []	Diterima	Tidak ada warning saat minat kosong
+Validasi form	Gunakan atribut required pada data yang wajib diisi	Diterima	Form tidak dapat dikirim jika data wajib kosong
+Penyimpanan history	Gunakan $_SESSION['history'] untuk menyimpan data pendaftaran	Diterima	Data pendaftaran tampil pada halaman history
+Tampilan history	Buat tabel yang berisi Nomor, Nama, Kursus, dan Total	Diterima	History tampil dalam bentuk tabel
+Ringkasan pendaftaran	Tampilkan data peserta, kursus, metode, paket, dan biaya	Diterima	Data berhasil tampil pada halaman ringkasan
+Pemisahan CSS	Pindahkan CSS ke assets/css/style.css	Diterima	Tampilan menjadi lebih rapi dan mudah dikelola
+Fasilitas kursus	Tampilkan Modul digital, Sertifikat penyelesaian, dan Forum diskusi	Diterima	Fasilitas tampil pada ringkasan
+Navigasi halaman	Tambahkan tombol Daftar Kursus, History, dan Beranda	Diterima	Navigasi antarhalaman berhasil digunakan
