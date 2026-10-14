@@ -30,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         !filter_var($email, FILTER_VALIDATE_EMAIL) ||
         $selectedCourse === null
     ) {
+        http_response_code(422); // Menetapkan HTTP response code 422 saat terjadi error validasi
         $error = 'Data tidak valid. Silakan kembali dan isi formulir dengan benar.';
     } else {
         $price = $selectedCourse['price'];

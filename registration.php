@@ -1,7 +1,5 @@
 <?php
 
-require_once __DIR__ . '/helpers.php';
-
 /*
 |--------------------------------------------------------------------------
 | Data Kursus
@@ -44,6 +42,7 @@ $courses = [
 ?>
 
 <!DOCTYPE html>
+
 <html lang="id">
 
 <head>
@@ -54,21 +53,27 @@ $courses = [
         name="viewport"
         content="width=device-width, initial-scale=1.0">
 
-    <title>Daftar Kursus - KursusKu</title>
+    <title>
+        Daftar Kursus - KursusKu
+    </title>
 
     <link
         rel="stylesheet"
-        href="assets/css/style.css?v=3">
+        href="assets/css/style.css">
 
 </head>
 
+
 <body>
+
 
 <main class="registration-page">
 
+
     <div class="registration-container">
 
-        <!-- HEADER -->
+
+        <!-- JUDUL -->
 
         <div class="registration-header">
 
@@ -88,6 +93,7 @@ $courses = [
         </div>
 
 
+
         <!-- FORM -->
 
         <form
@@ -95,20 +101,21 @@ $courses = [
             method="POST"
             class="registration-form">
 
+            <input type="hidden" name="source" value="week-05">
 
-            <!-- NAMA DAN EMAIL -->
+            <!-- NAMA + EMAIL -->
 
             <div class="form-row">
 
+
                 <div class="form-group">
 
-                    <label for="name">
+                    <label>
                         Nama lengkap
                     </label>
 
                     <input
                         type="text"
-                        id="name"
                         name="name"
                         required>
 
@@ -117,31 +124,31 @@ $courses = [
 
                 <div class="form-group">
 
-                    <label for="email">
+                    <label>
                         Email
                     </label>
 
                     <input
                         type="email"
-                        id="email"
                         name="email"
                         required>
 
                 </div>
 
+
             </div>
+
 
 
             <!-- PILIH KURSUS -->
 
             <div class="form-group">
 
-                <label for="course">
+                <label>
                     Pilih kursus
                 </label>
 
                 <select
-                    id="course"
                     name="course"
                     required>
 
@@ -149,20 +156,13 @@ $courses = [
                         -- Pilih kursus --
                     </option>
 
+
                     <?php foreach ($courses as $course): ?>
 
                         <option
-                            value="<?= htmlspecialchars(
-                                $course['name'],
-                                ENT_QUOTES,
-                                'UTF-8'
-                            ) ?>">
+                            value="<?= htmlspecialchars($course['name']) ?>">
 
-                            <?= htmlspecialchars(
-                                $course['name'],
-                                ENT_QUOTES,
-                                'UTF-8'
-                            ) ?>
+                            <?= htmlspecialchars($course['name']) ?>
 
                             -
                             Rp<?= number_format(
@@ -181,6 +181,7 @@ $courses = [
             </div>
 
 
+
             <!-- TIPE PESERTA -->
 
             <fieldset>
@@ -189,36 +190,51 @@ $courses = [
                     Tipe peserta
                 </legend>
 
+
                 <div class="radio-group">
 
+
                     <label>
+
                         <input
                             type="radio"
                             name="participant_type"
                             value="Mahasiswa"
                             required>
+
                         Mahasiswa
+
                     </label>
 
+
                     <label>
+
                         <input
                             type="radio"
                             name="participant_type"
                             value="Guru">
+
                         Guru
+
                     </label>
 
+
                     <label>
+
                         <input
                             type="radio"
                             name="participant_type"
                             value="Umum">
+
                         Umum
+
                     </label>
+
 
                 </div>
 
             </fieldset>
+
 
 
             <!-- MINAT BELAJAR -->
@@ -229,57 +245,76 @@ $courses = [
                     Minat belajar
                 </legend>
 
+
                 <div class="checkbox-group">
 
+
                     <label>
+
                         <input
                             type="checkbox"
                             name="interests[]"
                             value="Frontend">
+
                         Frontend
+
                     </label>
 
+
                     <label>
+
                         <input
                             type="checkbox"
                             name="interests[]"
                             value="Backend">
+
                         Backend
+
                     </label>
 
+
                     <label>
+
                         <input
                             type="checkbox"
                             name="interests[]"
                             value="Database">
+
                         Database
+
                     </label>
 
+
                     <label>
+
                         <input
                             type="checkbox"
                             name="interests[]"
                             value="UI/UX">
+
                         UI/UX
+
                     </label>
+
 
                 </div>
 
             </fieldset>
 
 
-            <!-- METODE DAN PAKET -->
+
+            <!-- METODE + PAKET -->
 
             <div class="form-row">
 
+
                 <div class="form-group">
 
-                    <label for="method">
+                    <label>
                         Metode belajar
                     </label>
 
                     <select
-                        id="method"
                         name="method"
                         required>
 
@@ -304,14 +339,14 @@ $courses = [
                 </div>
 
 
+
                 <div class="form-group">
 
-                    <label for="package">
+                    <label>
                         Jumlah paket
                     </label>
 
                     <select
-                        id="package"
                         name="package">
 
                         <option value="1">
@@ -330,28 +365,31 @@ $courses = [
 
                 </div>
 
+
             </div>
+
 
 
             <!-- CATATAN -->
 
             <div class="form-group">
 
-                <label for="note">
+                <label>
                     Catatan tambahan
                 </label>
 
                 <textarea
-                    id="note"
                     name="note"
                     rows="5"></textarea>
 
             </div>
 
 
+
             <!-- TOMBOL -->
 
             <div class="button-group">
+
 
                 <button
                     type="submit"
@@ -372,16 +410,19 @@ $courses = [
 
 
                 <a
-                    href="loop-lab.php"
+                    href="history.php"
                     class="btn-secondary">
 
                     Loop Lab
 
                 </a>
 
+
             </div>
 
+
         </form>
+
 
 
         <!-- FASILITAS -->
@@ -410,9 +451,11 @@ $courses = [
 
         </div>
 
+
     </div>
 
 </main>
+
 
 </body>
 
