@@ -1,321 +1,311 @@
-<?php
+* {
+    box-sizing: border-box;
+}
 
-session_start();
-
-// Mengambil data history dari session
-$history = $_SESSION['history'] ?? [];
-
-
-// Jika belum ada data dari pendaftaran,
-// gunakan data contoh
-if (empty($history)) {
-
-    $history = [
-
-        [
-            'name' => 'Raudhatul Husna',
-            'course' => 'PHP Dasar',
-            'total' => 320000
-        ],
-
-        [
-            'name' => 'Siti Aisyah',
-            'course' => 'Web Dasar',
-            'total' => 240000
-        ],
-
-        [
-            'name' => 'Ahmad',
-            'course' => 'MySQL Dasar',
-            'total' => 522500
-        ],
-
-        [
-            'name' => 'Nabila Putri',
-            'course' => 'UI Web Dasar',
-            'total' => 191250
-        ]
-
-    ];
-
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #fff0f6;
+    color: #333;
 }
 
 
-// Fungsi untuk keamanan output
-function e($value)
-{
-    return htmlspecialchars(
-        (string)$value,
-        ENT_QUOTES,
-        'UTF-8'
-    );
+/* =========================
+   REGISTRATION
+   ========================= */
+
+.registration-page {
+    min-height: 100vh;
+    padding: 40px 20px;
 }
 
-?>
-
-
-<!DOCTYPE html>
-
-<html lang="id">
-
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
-    <title>
-        History Pendaftaran - KursusKu
-    </title>
-
-
-    <!-- CSS HISTORY -->
-
-    <link
-        rel="stylesheet"
-        href="assets/css/history.css">
-
-</head>
-
-
-<body>
-
-
-<main class="history-page">
-
-
-    <div class="history-container">
-
-
-        <!-- =========================
-             HEADER
-             ========================= -->
-
-        <div class="history-header">
-
-            <p class="milestone">
-                MILESTONE 6 · HISTORY
-            </p>
-
-
-            <h1>
-                History Pendaftaran
-            </h1>
-
-
-            <p>
-                Berikut adalah daftar pendaftaran
-                kursus yang sudah dilakukan.
-            </p>
-
-        </div>
-
-
-
-        <!-- =========================
-             CARD TABEL
-             ========================= -->
-
-        <div class="history-card">
-
-
-            <div class="table-title">
-
-                <h2>
-                    Data Pendaftaran
-                </h2>
-
-
-                <p>
-                    Riwayat peserta yang telah
-                    mendaftar kursus.
-                </p>
-
-            </div>
-
-
-
-            <!-- =========================
-                 TABEL
-                 ========================= -->
-
-            <div class="table-wrapper">
-
-
-                <table class="history-table">
-
-
-                    <thead>
-
-                        <tr>
-
-                            <th>
-                                Nomor
-                            </th>
-
-
-                            <th>
-                                Nama
-                            </th>
-
-
-                            <th>
-                                Kursus
-                            </th>
-
-
-                            <th>
-                                Total
-                            </th>
-
-                        </tr>
-
-                    </thead>
-
-
-
-                    <tbody>
-
-
-                        <?php if (!empty($history)): ?>
-
-
-                            <?php foreach (
-                                $history
-                                as $index => $item
-                            ): ?>
-
-
-                                <tr>
-
-
-                                    <!-- NOMOR -->
-
-                                    <td class="number">
-
-                                        <?= $index + 1 ?>
-
-                                    </td>
-
-
-
-                                    <!-- NAMA -->
-
-                                    <td>
-
-                                        <?= e(
-                                            $item['name']
-                                            ?? ''
-                                        ) ?>
-
-                                    </td>
-
-
-
-                                    <!-- KURSUS -->
-
-                                    <td>
-
-                                        <?= e(
-                                            $item['course']
-                                            ?? ''
-                                        ) ?>
-
-                                    </td>
-
-
-
-                                    <!-- TOTAL -->
-
-                                    <td class="total">
-
-                                        Rp<?= number_format(
-                                            $item['total']
-                                            ?? 0,
-                                            0,
-                                            ',',
-                                            '.'
-                                        ) ?>
-
-                                    </td>
-
-
-                                </tr>
-
-
-                            <?php endforeach; ?>
-
-
-                        <?php else: ?>
-
-
-                            <tr>
-
-                                <td
-                                    colspan="4"
-                                    class="empty">
-
-                                    Belum ada data
-                                    pendaftaran.
-
-                                </td>
-
-                            </tr>
-
-
-                        <?php endif; ?>
-
-
-                    </tbody>
-
-
-                </table>
-
-
-            </div>
-
-
-        </div>
-
-
-
-        <!-- =========================
-             TOMBOL
-             ========================= -->
-
-        <div class="button-area">
-
-
-            <a
-                href="registration.php"
-                class="btn btn-primary">
-
-                Daftar Kursus
-
-            </a>
-
-
-
-            <a
-                href="index.php"
-                class="btn btn-secondary">
-
-                Beranda
-
-            </a>
-
-
-        </div>
-
-
-    </div>
-
-
-</main>
-
-
-</body>
-
-</html>
+.registration-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.registration-header {
+    margin-bottom: 25px;
+}
+
+.registration-header .milestone,
+.milestone {
+    color: #c13f7d;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.registration-header h1 {
+    margin: 10px 0;
+    font-size: 38px;
+    color: #222;
+}
+
+.registration-header p {
+    color: #555;
+    font-size: 17px;
+}
+
+
+/* =========================
+   FORM
+   ========================= */
+
+.registration-form {
+    background: white;
+    padding: 25px;
+    border: 1px solid #f0b6d0;
+    border-radius: 18px;
+    box-shadow: 0 5px 15px rgba(200, 80, 130, 0.08);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label,
+fieldset legend {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #c13f7d;
+}
+
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e5a9c4;
+    border-radius: 8px;
+    font-size: 15px;
+    background: white;
+}
+
+textarea {
+    resize: vertical;
+}
+
+
+/* =========================
+   RADIO & CHECKBOX
+   ========================= */
+
+fieldset {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #f0b6d0;
+    border-radius: 10px;
+}
+
+.radio-group,
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+.radio-group label,
+.checkbox-group label {
+    color: #333;
+    font-weight: normal;
+}
+
+
+/* =========================
+   BUTTON
+   ========================= */
+
+.button-group,
+.button-area {
+    margin-top: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.btn-submit,
+.btn-primary,
+.btn-secondary {
+    display: inline-block;
+    padding: 12px 22px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-submit,
+.btn-primary {
+    background: #c13f7d;
+    color: white;
+    border: none;
+}
+
+.btn-secondary {
+    background: white;
+    color: #c13f7d;
+    border: 2px solid #c13f7d;
+}
+
+.btn-submit:hover,
+.btn-primary:hover,
+.btn-secondary:hover {
+    opacity: 0.85;
+}
+
+
+/* =========================
+   FASILITAS REGISTRATION
+   ========================= */
+
+.facilities {
+    margin-top: 25px;
+    padding: 20px 25px;
+    background: white;
+    border: 1px solid #f0b6d0;
+    border-radius: 15px;
+}
+
+.facilities h3 {
+    margin-top: 0;
+    color: #c13f7d;
+}
+
+.facilities li {
+    margin: 8px 0;
+}
+
+
+/* =========================
+   PROCESS REGISTRATION
+   ========================= */
+
+.data-card {
+    background: white;
+    padding: 25px;
+    margin-bottom: 30px;
+    border: 1px solid #f0b6d0;
+    border-radius: 18px;
+    box-shadow: 0 4px 15px rgba(200, 80, 130, 0.08);
+}
+
+.data-card h2,
+.section-title {
+    color: #c13f7d;
+}
+
+.data-table,
+.price-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table td,
+.price-table td {
+    padding: 15px;
+    border: 1px solid #e5a9c4;
+}
+
+.data-table td {
+    width: 50%;
+    vertical-align: top;
+}
+
+.data-table strong {
+    display: block;
+    margin-bottom: 5px;
+    color: #c13f7d;
+}
+
+.price-table {
+    background: white;
+}
+
+.price-table td:last-child {
+    text-align: right;
+    font-weight: bold;
+}
+
+.price-table .total-row {
+    background: #ffd9e8;
+    color: #9e245f;
+    font-size: 18px;
+}
+
+.interest-section,
+.facility-section,
+.note-section {
+    margin-top: 30px;
+}
+
+.interest-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.interest-item {
+    padding: 9px 16px;
+    background: #ffe0ed;
+    color: #a62c68;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.facility-list {
+    padding: 18px 30px;
+    background: white;
+    border: 1px solid #f0b6d0;
+    border-radius: 12px;
+}
+
+.facility-list li {
+    margin: 10px 0;
+}
+
+.note-box {
+    min-height: 60px;
+    padding: 18px;
+    background: white;
+    border: 1px solid #f0b6d0;
+    border-radius: 12px;
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 600px) {
+
+    .registration-page {
+        padding: 20px 12px;
+    }
+
+    .registration-header h1 {
+        font-size: 28px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .registration-form,
+    .data-card {
+        padding: 18px;
+    }
+
+    .data-table td {
+        padding: 10px;
+    }
+}
