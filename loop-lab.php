@@ -1,65 +1,118 @@
 <?php
 require_once __DIR__ . '/data.php';
-?>
 
+function e($value) {
+    return htmlspecialchars((string)$value, ENT_QUOTES, 'UTF-8');
+}
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loop Lab - KursusKu</title>
+
     <style>
         body {
             font-family: Arial, sans-serif;
             background: #fff0f6;
             color: #4a2636;
-            padding: 25px;
+            padding: 25px 15px;
         }
+
         .container {
-            max-width: 800px;
-            margin: auto;
+            max-width: 850px;
+            margin: 30px auto;
+            padding: 30px;
             background: white;
-            padding: 25px;
             border: 1px solid #f0b6d0;
             border-radius: 15px;
+            box-shadow: 0 8px 25px #c13f7d18;
         }
-        h1, h2 { color: #c13f7d; }
-        .card {
-            padding: 15px;
-            margin: 12px 0;
+
+        h1, h2 {
+            color: #a82e68;
+        }
+
+        .table-wrap {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #f0b6d0;
+            text-align: left;
+        }
+
+        th {
+            background: #c13f7d;
+            color: white;
+        }
+
+        tr:nth-child(even) {
             background: #fff0f6;
-            border-radius: 8px;
         }
-        a {
+
+        .button {
             display: inline-block;
-            margin: 12px 8px 0 0;
-            padding: 10px 15px;
+            margin: 8px 5px 0 0;
+            padding: 11px 17px;
             background: #c13f7d;
             color: white;
             text-decoration: none;
-            border-radius: 7px;
+            border-radius: 8px;
+        }
+
+        .secondary {
+            background: white;
+            color: #a82e68;
+            border: 1px solid #c13f7d;
         }
     </style>
 </head>
 <body>
+
 <div class="container">
     <h1>Loop Lab KursusKu</h1>
-    <p>Contoh perulangan for, while, dan do-while.</p>
+    <p>Contoh perulangan foreach, for, while, dan do-while.</p>
 
     <h2>Daftar Kursus (foreach)</h2>
-    <?php foreach ($courses as $code => $course): ?>
-        <div class="card">
-            <strong><?= htmlspecialchars($course['name']) ?></strong><br>
-            Kode: <?= htmlspecialchars($code) ?><br>
-            Harga: Rp<?= number_format($course['price'], 0, ',', '.') ?>
-        </div>
-    <?php endforeach; ?>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Kode Kursus</th>
+                    <th>Nama Kursus</th>
+                    <th>Harga</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($courses as $index => $course): ?>
+                <tr>
+                    <td><?= $index + 1 ?></td>
+                    <td><?= e($course['code']) ?></td>
+                    <td><?= e($course['name']) ?></td>
+                    <td>Rp<?= number_format($course['price'], 0, ',', '.') ?></td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
 
     <h2>Contoh for</h2>
     <p>
         <?php
-        for ($i = 1; $i <= 3; $i++) {
-            echo "Paket $i ";
+        for ($i = 1; $i <= 5; $i++) {
+            echo $i . ' ';
         }
         ?>
     </p>
@@ -68,8 +121,8 @@ require_once __DIR__ . '/data.php';
     <p>
         <?php
         $i = 1;
-        while ($i <= 3) {
-            echo "Peserta $i ";
+        while ($i <= 5) {
+            echo $i . ' ';
             $i++;
         }
         ?>
@@ -80,15 +133,15 @@ require_once __DIR__ . '/data.php';
         <?php
         $i = 1;
         do {
-            echo "Latihan $i ";
+            echo $i . ' ';
             $i++;
-        } while ($i <= 3);
+        } while ($i <= 5);
         ?>
     </p>
 
-    <a href="register.php">Daftar Kursus</a>
-    <a href="history.php">History</a>
-    <a href="index.php">Beranda</a>
+    <a href="index.php" class="button">Kembali ke Beranda</a>
+    <a href="register.php" class="button secondary">Daftar Kursus</a>
 </div>
+
 </body>
 </html>
